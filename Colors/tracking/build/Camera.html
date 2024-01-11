@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../codigos/css/QuizzStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Try on</title>
+</head>
+
+</html>
+<body>
+    <section class="card">
+        <div class="content">
+            <div class="cabeçalho">
+                <a href="../php/inicioUser.php" target="_blank" class="botao"><img src="../../Imagem/angulo-esquerdo.png"></a>
+                <h3>Try on</h3>
+
+                
+                <span class="fechar"><img src="../../Imagem/cruz.png" alt=""></span>
+            </div>
+
+    <div class="chat" id="chat">
+        <video id="video" width="320" height="240" preload autoplay loop muted></video>
+        <canvas id="canvas" width="320" height="240"></canvas>
+    </div>
+
+    <div class="respostas" id="opcoes">
+    <div class="color-buttons">
+        <div class="color-button" style="background-color: #f8cea8;" onclick="changeColor('#f8cea8')"></div>
+        <div class="color-button" style="background-color: #efbf91;"  onclick="changeColor('#efbf91')"></div>
+        <div class="color-button" style="background-color: #efbd8a;"  onclick="changeColor('#efbd8a')"></div>
+        <div class="color-button" style="background-color: #f0b17e;"  onclick="changeColor('#f0b17e')"></div>
+        <div class="color-button" style="background-color: #e4ab68;"  onclick="changeColor('#e4ab68')"></div>
+        <div class="color-button" style="background-color: #d19149;" onclick="changeColor('#d19149')"></div>
+        <div class="color-button" style="background-color: #a66442;"  onclick="changeColor('#a66442')"></div>
+        <div class="color-button" style="background-color: #884519;"  onclick="changeColor('#884519')"></div>
+        <div class="color-button" style="background-color: #7a3a0d;"  onclick="changeColor('#7a3a0d')"></div>
+    </div>
+    </div>
+        </div>
+
+
+    <script src="tracking-min.js"></script>
+    <script src="data/face-min.js"></script>
+    <script>
+        function init() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            const tracker = new tracking.ObjectTracker('face');
+            tracking.track('#video', tracker, { camera: true });
+
+            let currentColor = 'rgba(255, 0, 0, 0.3)';
+
+            tracker.on('track', (event) => {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                event.data.forEach((rect) => {
+                    const centerX = rect.x + rect.width / 2;
+                    const centerY = rect.y + rect.height / 2;
+                    const radiusX = rect.width / 2;
+                    const radiusY = rect.height / 2;
+
+                    if (!isInEyeOrMouth(centerX, centerY, rect.width, rect.height)) {
+                        context.beginPath();
+                        context.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, 2 * Math.PI);
+                        context.fillStyle = currentColor;
+                        context.fill();
+                        context.lineWidth = 2;
+                        context.strokeStyle = currentColor;
+                        context.stroke();
+                    }
+                });
+            });
+
+            window.changeColor = function (color) {
+                currentColor = `rgba(${hexToRgb(color)}, 0.3)`;
+            };
+
+            function isInEyeOrMouth(x, y, width, height) {
+                // Lógica para verificar se o ponto (x, y) está nas regiões dos olhos ou boca
+                // Você pode ajustar isso com base na geometria do rosto
+                return (
+                    (x > 0.35 * canvas.width && x < 0.65 * canvas.width && y > 0.4 * canvas.height && y < 0.6 * canvas.height) ||
+                    (x > 0.35 * canvas.width && x < 0.65 * canvas.width && y > 0.75 * canvas.height && y < 0.85 * canvas.height)
+                );
+            }
+
+            function hexToRgb(hex) {
+                // Converte uma cor hexadecimal para um formato RGB
+                const bigint = parseInt(hex.slice(1), 16);
+                const r = (bigint >> 16) & 255;
+                const g = (bigint >> 8) & 255;
+                const b = bigint & 255;
+                return `${r}, ${g}, ${b}`;
+            }
+        }
+
+        window.onload = init;
+    </script>
+
+</body>
+</html>

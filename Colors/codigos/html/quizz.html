@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/QuizzStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Chat Colors</title>
+</head>
+
+</html>
+
+
+<body>
+    <section class="card">
+        <div class="content">
+            <div class="cabeçalho">
+                <a href="../php/inicioUser.php" target="_blank" class="botao"><img src="../../Imagem/angulo-esquerdo.png"></a>
+                <h3>Chat Colors</h3>
+
+                
+                <span class="fechar"><img src="../../Imagem/cruz.png" alt=""></span>
+            </div>
+
+            <!--tag pai  -->
+            <div class="chat" id="chat">
+
+                <!-- primeira mensagem -->
+                <div class="bot">
+                    <img src="../../Imagem/Cora.jpeg" alt="" class="perfil">
+                    <div class="text-area">
+                        <span class="text">Oii! Eu me chamo Cora e vou te ajudar durante seu atendimento, o que você
+                            procura?</span>
+                    </div>
+                </div>
+
+                <!-- inserir aqui -->
+
+            </div>
+            <div class="respostas" id="opcoes">
+                <button onclick="clicouSC('Skin Care')" class="opcoes" value="Skin Care">Skin care</button>
+                <button onclick="clicouC('Camuflagem')" class="opcoes" value="Camuflagem">Corretivo</button>
+                <button onclick="clicouBase('Base')" class="opcoes" value="Base">Base</span>
+
+            </div>
+        </div>
+
+
+        <script>
+            const chat = document.getElementById('chat');
+            const opcoes = document.getElementById('opcoes');
+            
+
+            let i = 0;
+
+            function clicouSC(resposta) {
+            i++
+            const userChoice = resposta.toLowerCase();
+
+            chat.innerHTML += htmlUsuario(resposta)
+
+                    let botResponse;
+            if (userChoice === 'seca') {
+                botResponse = "O Sérum Facial Nutritivo De Coco Melu é perfeito para peles secas como a sua, pois, possui ação nutritiva, relaxante, hidratante e reparadora contra os sinais de envelhecimento! Tudo isso em um só tubinho. Gostou? Então clique no botão abaixo para garantir o seu ;) ";
+                htmlBotimg("../../Imagem/serumHidra.png");
+            } else if (userChoice === 'mista') {
+                botResponse = "O Sérum Facial Hidratante De Pêssego é perfeito para peles mistas como a sua, pois, é composto por poderosos ativos que juntos possuem um alto poder hidratante, contém ácido hialurônico, vitamina E, aloe vera, algas marinhas e pantenol! Tudo isso em um só tubinho. Gostou? Então clique no botão abaixo para garantir o seu ;)";
+                htmlBotimg("../../Imagem/serumAnti.png");
+            } else if (userChoice === 'oleosa') {
+                botResponse = "O Sérum Facial Detox De Melancia Melu é perfeito para peles oleosas como a sua, pois, mantém o PH da sua pele equilibrado e protege contra futuras acnes! Tudo isso em um só tubinho. Gostou? Então clique no botão abaixo para garantir o seu ;) ";
+                htmlBotimg("../../Imagem/serumSeca.png");
+            }
+            chat.innerHTML += i < 2 ? htmlBot(respostasBot()) : htmlBot(botResponse) ; 
+            opcoes.innerHTML = i < 2 ? htmlOpcoes(listasOpcoes()) : htmlOpcoesImg();
+
+        }
+        //ordem de respostas do bot
+        function respostasBot() {
+            const respostas = {
+                1: "Qual é o seu tipo de pele?",
+            }
+            //pula para a proxima resposta do objeto
+            return respostas[i]
+        }function htmlBot(texto) {
+            return `<div class="bot">
+                        <img src="../../Imagem/Cora.jpeg" alt="" class="perfil">
+                        <div class="text-area">
+                            <span class="text">${texto}</span>
+                        </div>
+                    </div>`
+        }
+        function htmlBotimg(imageSrc) {
+            return `<div class="bot">
+                <img src="../../Imagem/Cora.jpeg" alt="" class="perfil">
+                <div class="text-area">
+                    <span class="text"><img src="${imageSrc}" alt="" class="perfil"></span>
+                </div>
+            </div>`;
+        }
+        function listasOpcoes() {
+            const lista = {
+                1: ['Seca', 'Mista', 'Oleosa'],
+            }
+            return lista[i]
+        }
+        function htmlUsuario(texto) {
+            return `<div class="usuario">
+                        <img src="../../Imagem/Usuario.jpeg" alt="" class="perfil">
+                        <div class="text-area">
+                            <span class="text">${texto}</span>
+                        </div>
+                    </div>`
+        }
+        function htmlOpcoes(opcao) {
+            return i < 3 ? `<button onclick="clicouSC('${opcao[0]}')" class="opcoes" value="${opcao[0]}">${opcao[0]}</button>
+            <button onclick="clicouSC('${opcao[1]}')" class="opcoes" value="${opcao[1]}">${opcao[1]}</button>
+            <button onclick="clicouSC('${opcao[2]}')" class="opcoes" value="${opcao[2]}">${opcao[2]}</button>` : `<button onclick="clicouSC('${opcao[0]}')" class="opcoes" value="${opcao[0]}">${opcao[0]}</button>
+            <button onclick="clicouSC('${opcao[1]}')" class="opcoes" value="${opcao[1]}">${opcao[1]}</button>`
+        }
+        function htmlOpcoesImg() {
+            return `<button  class="opcoes" ><a href="https://api.whatsapp.com/send?phone=5531991202811&text=Oi%2C%20gostaria%20de%20adquirir%20o%20produto%20que%20encontrei%20no%20site%20Colors">Faça seu pedido!</a></button>`
+        }
+        //camuflagem
+        function clicouC(resposta) {
+            i++
+            const userChoiceCamuflagem = resposta.toLowerCase();
+
+            chat.innerHTML += htmlUsuarioCamuflagem(resposta)
+
+                    let botResponseCamuflagem;
+            if (userChoiceCamuflagem === 'avermelhadas') {
+                botResponseCamuflagem = "O Corretivo Líquido Vizzela Camuflagem - Verde é perfeito para para neutralizar manchas avermelhadas, como espinhas ou rosáceas em peles claras. Além de ter pincel big flat que facilita seu uso. Gostou? Então clique no botão abaixo para garantir o seu ;) ";
+                htmlBotimgCamuflagem("../../Imagem/serumHidra.png");
+            } else if (userChoiceCamuflagem === 'arroxeadas') {
+                botResponseCamuflagem = "O Corretivo Líquido Vizzela Camuflagem - Amarelo é perfeito para para neutralizar manchas arroxeadas, como hematomas ou olheiras nesse tom.Além de ter pincel big flat que facilita seu uso. Gostou? Então clique no botão abaixo para garantir o seu ;) ";
+                htmlBotimgCamuflagem("../../Imagem/serumAnti.png");
+            } else if (userChoiceCamuflagem === 'azuladas') {
+                botResponseCamuflagem = "O Corretivo Líquido Vizzela Camuflagem - Salmão é perfeito para para neutralizar manchas azuladas ou amarronzadas, como olheiras e melasma em peles mais claras.Além de ter pincel big flat que facilita seu uso. Gostou? Então clique no botão abaixo para garantir o seu ;) ";
+                htmlBotimgCamuflagem("../../Imagem/serumSeca.png");
+            }
+            chat.innerHTML += i < 2 ? htmlBotCamuflagem(respostasBotCamuflagem()) : htmlBotCamuflagem(botResponseCamuflagem) ; 
+            opcoes.innerHTML = i < 2 ? htmlOpcoesCamuflagem(listasOpcoesCamuflagem()) : htmlOpcoesImgCamuflagem();
+
+        }
+        //ordem de respostas do bot
+        function respostasBotCamuflagem() {
+            const respostasCamuflagem = {
+                1: "Quais manchas são predominantes em seu rosto?",
+            }
+            //pula para a proxima resposta do objeto
+            return respostasCamuflagem[i]
+        }function htmlBotCamuflagem(texto) {
+            return `<div class="bot">
+                        <img src="../../Imagem/Cora.jpeg" alt="" class="perfil">
+                        <div class="text-area">
+                            <span class="text">${texto}</span>
+                        </div>
+                    </div>`
+        }
+        function htmlBotimgCamuflagem(imageSrc) {
+            return `<div class="bot">
+                <img src="../../Imagem/Cora.jpeg" alt="" class="perfil">
+                <div class="text-area">
+                    <span class="text"><img src="${imageSrc}" alt="" class="perfil"></span>
+                </div>
+            </div>`;
+        }
+        function listasOpcoesCamuflagem() {
+            const listaCamuflagem = {
+                1: ['Avermelhadas', 'Arroxeadas', 'Azuladas'],
+            }
+            return listaCamuflagem[i]
+        }
+        function htmlUsuarioCamuflagem(texto) {
+            return `<div class="usuario">
+                        <img src="../../Imagem/Usuario.jpeg" alt="" class="perfil">
+                        <div class="text-area">
+                            <span class="text">${texto}</span>
+                        </div>
+                    </div>`
+        }
+        function htmlOpcoesCamuflagem(opcao) {
+            return i < 3 ? `<button onclick="clicouC('${opcao[0]}')" class="opcoes" value="${opcao[0]}">${opcao[0]}</button>
+            <button onclick="clicouC('${opcao[1]}')" class="opcoes" value="${opcao[1]}">${opcao[1]}</button>
+            <button onclick="clicouC('${opcao[2]}')" class="opcoes" value="${opcao[2]}">${opcao[2]}</button>` : `<button onclick="clicouC('${opcao[0]}')" class="opcoes" value="${opcao[0]}">${opcao[0]}</button>
+            <button onclick="clicouC('${opcao[1]}')" class="opcoes" value="${opcao[1]}">${opcao[1]}</button>`
+        }
+        function htmlOpcoesImgCamuflagem() {
+            return `<button  class="opcoes" ><a href="https://api.whatsapp.com/send?phone=5531991202811&text=Oi%2C%20gostaria%20de%20adquirir%20o%20produto%20que%20encontrei%20no%20site%20Colors">Faça seu pedido!</a></button>`
+        }
+        
+        //base
+        function clicouBase(respostaBase) {
+            i++
+            chat.innerHTML += htmlUsuario(respostaBase)
+            chat.innerHTML += i < 2 ? htmlBotBase(respostasBotBase()) : htmlBotimgBase()
+            opcoes.innerHTML = i < 2 ? htmlOpcoesBase(listasOpcoesBase()) : htmlOpcoesImgBase()
+
+        }
+
+        //ordem de respostas do bot
+        function respostasBotBase() {
+            const respostasBase = {
+                1: "A Base Mate Boca Rosa Beauty by Payot é uma base de alta cobertura que proporciona um acabamento mate sem deixar a pele ressecada ou craquelada.Ela espalha facilmente, é resistência à água e possui longa duração, além de ser um produto hipoalergênico, dermatologicamente testado que poder ser indicado para todos os tipos de pele! Você pode experimentar em nosso provador virtual todas as 9 cores e escolher a que mais combina com você, para isso você permite que tenhamos acesso sua camera?"
+            }
+            //pula para a proxima resposta do objeto
+            return respostasBase[i]
+        }
+
+        //estrutura do html do dialogo do bot
+        function htmlBotBase(texto) {
+            return `<div class="bot">
+                        <img src="../../Imagem/Cora.jpeg" alt="" class="perfil">
+                        <div class="text-area">
+                            <span class="text">${texto}</span>
+                        </div>
+                    </div>`
+        }
+
+        function htmlBotimgBase() {
+            return window.location.href = "../../tracking/build/Camera.html";
+            
+        }
+        function listasOpcoesBase() {
+            const listaBase = {
+                1: ['', 'Sim', 'Não']
+            }
+            return listaBase[i]
+        }
+
+        //estrutura do html do dialogo do usuario
+        function htmlUsuarioBase(texto) {
+            return `<div class="usuario">
+                        <img src="../../Imagem/Usuario.jpeg" alt="" class="perfil">
+                        <div class="text-area">
+                            <span class="text">${texto}</span>
+                        </div>
+                    </div>`
+        }
+
+        function htmlOpcoesBase(opcao) {
+            return i < 2 ? `<span onclick="clicouBase('${opcao[1]}')" class="opcoes" value="${opcao[1]}">${opcao[1]}</span>
+            <span onclick="clicouBase('${opcao[2]}')" class="opcoes" value="${opcao[2]}">${opcao[2]}</span>` : `<span onclick="clicouBase('${opcao[0]}')" class="opcoes" value="${opcao[0]}">${opcao[0]}</span>
+            <span onclick="clicouBase('${opcao[1]}')" class="opcoes" value="${opcao[1]}">${opcao[1]}</span>`
+        }
+        function htmlOpcoesImgBase() {
+            return window.location.href = "../../tracking/build/Camera.html";
+        }
+
+        
+           
+            //scroll do chat
+            const emulatedScreen = document.querySelector('.chat');
+    
+            // Função para rolar a tela para baixo
+            function scrollScreenDown() {
+                emulatedScreen.scrollTop += 1000; // Ajuste o valor conforme necessário
+            }
+    
+            // Observa as mudanças no conteúdo usando MutationObserver
+            const observer = new MutationObserver((mutationsList, observer) => {
+                // Rola a tela para baixo sempre que ocorrer uma mutação (adicionar elemento)
+                scrollScreenDown();
+            });
+    
+            // Opções para observar mudanças na estrutura do DOM
+            const observerOptions = { childList: true, subtree: true };
+    
+            // Inicia a observação na tela de emulação
+            observer.observe(emulatedScreen, observerOptions);
+        </script>
+    </body>
+    
+    </html>

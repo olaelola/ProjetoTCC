@@ -1,0 +1,46 @@
+section.cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    
+}
+
+div.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3% 10% 3%  10%;
+    width: 50%;
+    
+}
+form {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+
+fieldset.ladoA {
+    width: 50%;
+    height:auto;
+    padding: 3% 5% 3% 5%;
+    background-color: rgb(241, 234, 226);
+}
+
+fieldset.ladoB {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    padding: 3% 5% 3% 5%;
+
+}
+div.enviar {
+    position: relative;
+    left: -20px;
+}

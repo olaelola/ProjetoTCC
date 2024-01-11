@@ -1,0 +1,141 @@
+*{
+    color: rgb(190, 115, 65);
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../Imagem/Base\ Escolha\ a\ Sua\ Engajamento\ Creme\ Story\ Para\ Instagram.png);
+    background-attachment: local;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section.card {
+    width: 40vw;
+    height: 85vh;
+    background-color: #fff;
+    border-radius: 40px;
+}
+
+div.content {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+div.cabeçalho {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e4d7d7;
+    border-radius: 40px 40px 0 0;
+    z-index: 1;
+        
+}
+
+div.cabeçalho span.voltar {
+    margin-left: 10px;
+    height: 30px;
+    width: 30px;
+}
+div.cabeçalho h3 {
+    color: #b47b44;
+} 
+div.cabeçalho span.fechar {
+    margin-right: 20px;
+}
+
+/* CSS DO CHAT */
+
+div.chat {
+    height: 80%;
+    width: 100%;
+    overflow: auto;
+}
+
+div.bot {
+    display:flex;
+    flex-direction: row;
+    margin: 5px 5px 0 0;
+    align-items: center;
+}
+
+
+div.usuario {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 5px 5px 0 0;
+    align-items: center;
+}
+
+div.bot img,
+div.usuario img {
+    width: 65px;
+    height: 65px;
+    border-radius: 27.6px;
+}
+
+
+div.text-area {
+    display: flex;
+    padding: 15px;
+    background-color: #e4d7d7;
+    border-radius: 15px;
+    
+}
+
+div.respostas {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 10%;
+    width: 100%;
+    border-radius: 0 0 40px 40px;
+    background-color: #e4d7d7;
+    z-index: 1;
+}
+
+ .opcoes {
+    padding: 1em 1.5em 1em 1.5em;
+    border: solid 1px;
+    border-radius: 50px;
+    cursor: pointer ;
+    background-color:  #e4d7d7; 
+    color: rgb(190, 115, 65); 
+    
+}
+span.opcoes:hover {
+    
+  border: 1px solid #ffffff;
+  color: rgb(241, 234, 226);
+}
+video, canvas {
+            position: absolute;
+            border: 1px solid blue;
+        }
+
+        .color-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .color-button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 5px;
+            cursor: pointer;
+            border: 2px solid white;
+            margin-right: 20px;
+           /* Transparência de 30% (ajuste conforme necessário) */
+        }
